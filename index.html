@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Felvételi pontszám kalkulátor</title>
+</head>
+
+<body>
+    <h1>Felvételi pontszám kalkulátor</h1>
+    <br>
+
+    <fieldset>
+        <legend>Év végi eredmények</legend>
+        <table>
+            <tr>
+                <th>Tantárgy neve</th>
+                <th>11.évf.</th>
+                <th>12.évf.</th>
+            </tr>
+            <tr>
+                <td><label for="magyarIrodalom">Magyar irodalom</label></td>
+                <td><input class="erdemJegy" id="magyarIrodalom11" name="magyarIrodalom" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="magyarIrodalom12" name="magyarIrodalom" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><label for="magyarNyelvtan">Magyar nyelvtan</label></td>
+                <td><input class="erdemJegy" id="magyarNyelvtan11" name="magyarNyelvtan" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="magyarNyelvtan12" name="magyarNyelvtan" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><label for="tortenelem">Történelem</label></td>
+                <td><input class="erdemJegy" id="tortenelem11" name="tortenelem" type="text" minlength="1" maxlength="1"
+                        onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="tortenelem12" name="tortenelem" type="text" minlength="1" maxlength="1"
+                        onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><label for="matematika">Matematika</label></td>
+                <td><input class="erdemJegy" id="matematika11" name="matematika" type="text" minlength="1" maxlength="1"
+                        onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="matematika12" name="matematika" type="text" minlength="1" maxlength="1"
+                        onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><label for="valasztottNyelv">Választott nyelv</label></td>
+                <td><input class="erdemJegy" id="valasztottNyelv11" name="valasztottNyelv" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="valasztottNyelv12" name="valasztottNyelv" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><label for="valasztottTargy">Választott tárgy</label></td>
+                <td><input class="erdemJegy" id="valasztottTargy11" name="valasztottTargy" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+                <td><input class="erdemJegy" id="valasztottTargy12" name="valasztottTargy" type="text" minlength="1"
+                        maxlength="1" onkeypress="javascript:return erdemJegy(event)"></td>
+            </tr>
+            <tr>
+                <td><button class="mindenJegy" onclick="mindOtos()">Mind ötös</button>
+                    <button onclick="mindNegyes()">Mind négyes</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="total" colspan="2">Év végi jegyek összesen (max.100 pont):</td>
+                <td class="alignRight total" id="jegyekOsszesPontszam"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Érettségi eredmények</legend>
+        <form id="world" action="">
+            <table id="tGroup" name="tGroup">
+                <tr>
+                    <th>Tantárgy neve</th>
+                    <th id="alignCenter">%</th>
+                    <th>Emelt</th>
+                    <th>Követelmény</th>
+                </tr>
+                <tr>
+                    <td><label for="magyarNyelv">Magyar nyelv és irodalom</label></td>
+                    <td><input id="magyarNyelvSzazalek" name="magyarNyelv" type="text"
+                            onkeyup='if(!validnum(this.value)) this.value="";'></td>
+                    <td><select id="magyarNyelvEmelt" name="select1" size=”1”>
+                            <option value="nincs" selected>Nincs</option>
+                            <option value="van">Van</option>
+                        </select></td>
+                    <td class="alignCenter Kovetelmeny"><input id="magyarNyelvKovetelmeny" name="magyarNyelv"
+                            type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td><label for="tortenelem">Történelem</label></td>
+                    <td><input id="tortenelemSzazalek" name="tortenelem" type="text"
+                            onkeyup='if(!validnum(this.value)) this.value="";'></td>
+                    <td><select id="tortenelemEmelt" name="select1" size=”1”>
+                            <option value="nincs" selected>Nincs</option>
+                            <option value="van">Van</option>
+                        </select></td>
+                    <td class="alignCenter Kovetelmeny"><input id="tortenelemKovetelmeny" name="tortenelem"
+                            type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td><label for="matematika">Matematika</label></td>
+                    <td><input id="matematikaSzazalek" name="matematika" type="text"
+                            onkeyup='if(!validnum(this.value)) this.value="";'></td>
+                    <td><select id="matematikaEmelt" name="select1" size=”1”>
+                            <option value="nincs" selected>Nincs</option>
+                            <option value="van">Van</option>
+                        </select></td>
+                    <td class="alignCenter Kovetelmeny"><input id="matematikaKovetelmeny" name="matematika"
+                            type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td><label for="valasztottNyelv">Választott nyelv</label></td>
+                    <td><input id="valasztottNyelvSzazalek" name="valasztottNyelv" type="text"
+                            onkeyup='if(!validnum(this.value)) this.value="";'></td>
+                    <td><select id="valasztottNyelvEmelt" name="select1" size=”1”>
+                            <option value="nincs" selected>Nincs</option>
+                            <option value="van">Van</option>
+                        </select></td>
+                    <td class="alignCenter Kovetelmeny"><input id="valasztottNyelvKovetelmeny" name="valasztottNyelv"
+                            type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td><label for="valasztottTargy">Választott tárgy</label></td>
+                    <td><input id="valasztottTargySzazalek" name="valasztottTargy" type="text"
+                            onkeyup='if(!validnum(this.value)) this.value="";'></td>
+                    <td><select id="valasztottTargyEmelt" name="select1" size=”1”>
+                            <option value="nincs" selected>Nincs</option>
+                            <option value="van">Van</option>
+                        </select></td>
+                    <td class="alignCenter Kovetelmeny"><input id="valasztottTargyKovetelmeny" name="valasztottTargy"
+                            type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td class="total" colspan="3">Érettségi átlag (max.100 pont):</td>
+                    <td class="alignRight total" id="erettsegiPontszam"></td>
+                </tr>
+            </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Érettségi pontok</legend>
+        <table>
+            <tr>
+                <th colspan="3">Tantárgy neve</th>
+                <th class="alignRight">Pontszám</th>
+            </tr>
+            <tr>
+                <td>
+                    <p colspan="4" id="elsoErettsegiEmelt"></p>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p class="alignRight" id="elsoErettsegiEmeltSzazalek"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p colspan="4" id="masodikErettsegiEmelt"></p>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p class="alignRight" id="masodikErettsegiEmeltSzazalek"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p colspan="4" id="harmadikErettsegiEmelt"></p>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p class="alignRight" id="harmadikErettsegiEmeltSzazalek"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p colspan="4" id="negyedikErettsegiEmelt"></p>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p class="alignRight" id="negyedikErettsegiEmeltSzazalek"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p colspan="4" id="otodikErettsegiEmelt"></p>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p class="alignRight" id="otodikErettsegiEmeltSzazalek"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="total" colspan="3">Érettségi pontok összesen (max.200 pont):</td>
+                <td class="alignRight total" id="erettsegiPontok"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Többletpontok</legend>
+        <table>
+            <tr>
+                <th>Megnevezés</th>
+                <th colspan="2">Szint</th>
+                <th>Pontszám</th>
+            </tr>
+            <tr></tr>
+            <td><label for="nyelvvizsga">Nyelvvizsga:</label></td>
+            <td colspan="2"><select id="nyelvvizsga" name="select2" size=”1”>
+                    <option value="nincs" selected>Nincs</option>
+                    <option value="b2">Középfok B2</option>
+                    <option value="c1">Felsőfok C1</option>
+                </select></td>
+            <td class="alignRight" id="nyelvvizsgaPont"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="emeltTobbletMagyar"></td>
+                <td class="alignRight" id="emeltTobbletMagyar50"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="emeltTobbletTortenelem"></td>
+                <td class="alignRight" id="emeltTobbletTortenelem50"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="emeltTobbletMatematika"></td>
+                <td class="alignRight" id="emeltTobbletMatematika50"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="emeltTobbletValasztottNyelv"></td>
+                <td class="alignRight" id="emeltTobbletValasztottNyelv50"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="emeltTobbletValasztottTargy"></td>
+                <td class="alignRight" id="emeltTobbletValasztottTargy50"></td>
+            </tr>
+            <tr>
+                <td class="total" colspan="3">Többletpontok összesen (max.100 pont):</td>
+                <td class="alignRight total" id="tobbletpontokOsszesen"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <div id="container">
+        <button id="szamolGomb" onclick="szamol()">Számol</button>
+        <button id="torolGomb" onclick="torol()">Minden mezőt töröl</button>
+    </div>
+    
+    <fieldset id="osszesitesFieldset">
+        <legend id="osszesitesLegend">Összesítés</legend>
+        <table>
+            <tr>
+                <td colspan="3" id="tanulmanyiPontokOsszesites">Tanulmányi pontok (max.200 pont)</td>
+                <td class="alignRight" id="tanulmanyiPontokOsszesitesPontszam">Pontszám</td>
+            </tr>
+            <tr>
+                <td id="duplazasSzoveg"></td>
+            </tr>
+            <tr>
+                <td colspan="3" id="erettsegiPontokOsszesites">Érettségi pontok (max.200 pont)</td>
+                <td class="alignRight" id="erettsegiPontokOsszesitesPontszam">Pontszám</td>
+            </tr>
+            <tr>
+                <td colspan="3" id="tobbletpontokOsszesites">Többletpontok (max.100 pont)</td>
+                <td class="alignRight" id="tobbletpontokOsszesitesPontszam">Pontszám</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="total" colspan="3" id="felveteliOsszpontszam">Összes pont (max.500 pont):</td>
+                <td class="alignRight total" id="osszesPont">Pontszám</td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <script src="/script.js"></script>    
+</body>
+
+</html>

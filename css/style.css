@@ -1,0 +1,115 @@
+*{
+    margin: auto;
+}
+@font-face {
+    font-family: roboto;
+    src: url(/css/font/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: roboto-light;
+    src: url(/css/font/Roboto-Light.ttf);
+}
+html{
+    font-family: roboto;
+    background-image: url(/img/konyvek_transparent.png);
+}
+h1{
+    padding: 20px 15px 20px;
+    width: 500px;
+    text-align: center;
+    color: white;
+    background-color: rgb(63, 86, 116);
+    border-radius: 5px;
+    border: solid 1px;
+    text-shadow: black 1px 1px;
+}
+table {
+    width: 400px;
+}
+th {
+    font-weight: bold;
+    text-align: left;
+}
+input {
+    text-align: center;
+    width: 40px;
+}
+fieldset {
+    display: block;
+    padding: 15px;
+    width: fit-content;
+    background-color: lightsteelblue;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+legend {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px;
+    background-color:rgb(141, 164, 196);
+    border: solid 1px;
+    border-radius: 5px;
+}
+#szamolGomb {
+    width: 92px;
+    height: 30px;
+    background-color:rgb(63, 86, 116);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: roboto;
+    display: inline-block;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    font-stretch: condensed;
+    border-radius: 5px;
+    text-shadow: black 1px 1px;
+}
+#torolGomb {
+    width: 180px;
+    height: 30px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: roboto;
+    display: inline-block;
+    margin-bottom: 30px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+#container {
+    text-align: center;
+}
+.mindenJegy {
+    margin: 2px 4px 2px 0px;
+}
+.alignRight {
+    text-align: right;
+}
+.total {
+    font-weight: bold;
+}
+#alignCenter {
+    text-align: center;
+}
+td input[type="checkbox"] {
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+#osszesPont {
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(63, 86, 116);
+    border-radius: 5px;
+    text-shadow: black 1px 1px;
+}
+#felveteliOsszpontszam {
+    color:white;
+    font-size: 18px;
+    padding: 10px;
+    background-color: rgb(63, 86, 116);
+    border-radius: 5px;
+    text-shadow: black 1px 1px;
+}
