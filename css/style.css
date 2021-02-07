@@ -3,15 +3,15 @@
 }
 @font-face {
     font-family: roboto;
-    src: url(/css/font/Roboto-Regular.ttf);
+    src: url(css/font/Roboto-Regular.ttf);
 }
 @font-face {
     font-family: roboto-light;
-    src: url(/css/font/Roboto-Light.ttf);
+    src: url(css/font/Roboto-Light.ttf);
 }
 html{
     font-family: roboto;
-    background-image: url(/img/konyvek_transparent.png);
+    background-image: url(img/konyvek_transparent.png);
 }
 h1{
     padding: 20px 15px 20px;
