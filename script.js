@@ -63,7 +63,7 @@ function chkChkBoxes() {
     for (var i = 0; i < 5; i++) {
         checkedcount += (chkRef[i*3+2].checked) ? 1 : 0;
         if (checkedcount > limit) {
-            alert("You can only select a maximum of " + limit + " checkboxes");
+            alert("Maximum " + limit + " követelményt jelölhetsz be!");
             this.checked = false;
             break;
         }
@@ -72,7 +72,7 @@ function chkChkBoxes() {
 
 
 //Minden mezőt töröl gomb működése
-/*function torol() {
+function torol() {
     //Érdemjegyeket törli
     document.getElementById("magyarIrodalom11").value = "";
     document.getElementById("magyarNyelvtan11").value = "";
@@ -149,7 +149,7 @@ function chkChkBoxes() {
     document.getElementById("tobbletpontokOsszesitesPontszam").innerHTML = "";
     document.getElementById("osszesPont").innerHTML = "";
 }
-*/
+
 
 //Fő függvény: a számol gomb megnyomására kiszámol minden értéket.
 function szamol() {
@@ -219,6 +219,7 @@ function szamol() {
     var matematikaKell = displayErettsegiTargy("matematikaKovetelmeny", "Matematika", "harmadik", matematikaErettsegi);
     var valasztottNyelvKell = displayErettsegiTargy("valasztottNyelvKovetelmeny", "Választott nyelv", "negyedik", valasztottNyelvErettsegi);
     var valasztottTargyKell = displayErettsegiTargy("valasztottTargyKovetelmeny", "Választott tárgy", "otodik", valasztottTargyErettsegi);
+    
     /*
         //Felvételi követelményként megjelölt érettségi tárgy beolvasása - checkbox pipa van/nincs + kiírás
         var magyarKell = document.getElementById("magyarNyelvKovetelmeny");
@@ -305,6 +306,33 @@ function szamol() {
         document.getElementById("erettsegiPontok").innerHTML = "200 pont";
     } else document.getElementById("erettsegiPontok").innerHTML = erettsegiPontok + " pont";
 
+    
+    //Ha nincs bejelölve követelményként, akkor törölje ki a tárgyat és a pontszámot az érettségi pontoknál
+    if (magyarKell.checked == false) {
+        document.getElementById("elsoErettsegiEmelt").innerHTML = "";
+        document.getElementById("elsoErettsegiEmeltSzazalek").innerHTML = "";
+    }
+    if (tortenelemKell.checked == false) {
+        document.getElementById("masodikErettsegiEmelt").innerHTML = "";
+        document.getElementById("masodikErettsegiEmeltSzazalek").innerHTML = "";
+    }
+    if (matematikaKell.checked == false) {
+        document.getElementById("harmadikErettsegiEmelt").innerHTML = "";
+        document.getElementById("harmadikErettsegiEmeltSzazalek").innerHTML = "";
+    }
+    if (valasztottNyelvKell.checked == false) {
+        document.getElementById("negyedikErettsegiEmelt").innerHTML = "";
+        document.getElementById("negyedikErettsegiEmeltSzazalek").innerHTML = "";
+    }
+    if (valasztottTargyKell.checked == false) {
+        document.getElementById("otodikErettsegiEmelt").innerHTML = "";
+        document.getElementById("otodikErettsegiEmeltSzazalek").innerHTML = "";
+    }
+
+
+
+
+
     //Felvételi követelményként maximum kettő érettségi tárgy jelölhető - hibaüzenet
     var kettoKovetelmeny = 0;
     if (magyarKell.checked == true) {
@@ -333,23 +361,23 @@ function szamol() {
     var valasztottTargyEmelt = document.getElementById("valasztottTargyEmelt").value;
 
     //Érettségi pontszámok számolása
-    if (magyarNyelvEmelt == "van" && magyarKell.checked == true) {
+    if (magyarNyelvEmelt == "van" && magyarKell.checked == true && magyarNyelvErettsegi >= 45) {
         document.getElementById("emeltTobbletMagyar").innerHTML = "Magyar nyelv és irodalom";
         document.getElementById("emeltTobbletMagyar50").innerHTML = 50 + " pont";
     }
-    if (tortenelemEmelt == "van" && tortenelemKell.checked == true) {
+    if (tortenelemEmelt == "van" && tortenelemKell.checked == true && tortenelemErettsegi >= 45) {
         document.getElementById("emeltTobbletTortenelem").innerHTML = "Történelem";
         document.getElementById("emeltTobbletTortenelem50").innerHTML = 50 + " pont";
     }
-    if (matematikaEmelt == "van" && matematikaKell.checked == true) {
+    if (matematikaEmelt == "van" && matematikaKell.checked == true && matematikaErettsegi >= 45) {
         document.getElementById("emeltTobbletMatematika").innerHTML = "Matematika";
         document.getElementById("emeltTobbletMatematika50").innerHTML = 50 + " pont";
     }
-    if (valasztottNyelvEmelt == "van" && valasztottNyelvKell.checked == true) {
+    if (valasztottNyelvEmelt == "van" && valasztottNyelvKell.checked == true && valasztottNyelvErettsegi >= 45) {
         document.getElementById("emeltTobbletValasztottNyelv").innerHTML = "Választott nyelv";
         document.getElementById("emeltTobbletValasztottNyelv50").innerHTML = 50 + " pont";
     }
-    if (valasztottTargyEmelt == "van" && valasztottTargyKell.checked == true) {
+    if (valasztottTargyEmelt == "van" && valasztottTargyKell.checked == true && valasztottTargyErettsegi >= 45) {
         document.getElementById("emeltTobbletValasztottTargy").innerHTML = "Választott tárgy";
         document.getElementById("emeltTobbletValasztottTargy50").innerHTML = 50 + " pont";
     }
@@ -364,19 +392,19 @@ function szamol() {
 
     //Többletpontok kiszámolása
     var tobbletPontok = 0;
-    if (magyarNyelvEmelt == "van" && magyarKell.checked == true) {
+    if (magyarNyelvEmelt == "van" && magyarKell.checked == true && magyarNyelvErettsegi >= 45) {
         tobbletPontok += 50;
     }
-    if (tortenelemEmelt == "van" && tortenelemKell.checked == true) {
+    if (tortenelemEmelt == "van" && tortenelemKell.checked == true && tortenelemErettsegi >= 45) {
         tobbletPontok += 50;
     }
-    if (matematikaEmelt == "van" && matematikaKell.checked == true) {
+    if (matematikaEmelt == "van" && matematikaKell.checked == true && matematikaErettsegi >= 45) {
         tobbletPontok += 50;
     }
-    if (valasztottNyelvEmelt == "van" && valasztottNyelvKell.checked == true) {
+    if (valasztottNyelvEmelt == "van" && valasztottNyelvKell.checked == true && valasztottNyelvErettsegi >= 45) {
         tobbletPontok += 50;
     }
-    if (valasztottTargyEmelt == "van" && valasztottTargyKell.checked == true) {
+    if (valasztottTargyEmelt == "van" && valasztottTargyKell.checked == true && valasztottTargyErettsegi >= 45) {
         tobbletPontok += 50;
     }
     if (nyelvvizsga == "b2") {
@@ -397,21 +425,44 @@ function szamol() {
 
     var tobbletPontokVegso = parseInt(document.getElementById("tobbletpontokOsszesitesPontszam").innerHTML);
 
+    //Többletpontoknál törölje, ahol nincs az emelt bejelölve + a nyelvvizsga
+    if (magyarNyelvEmelt == "nincs" || magyarKell.checked == false || magyarNyelvErettsegi < 45) {
+        document.getElementById("emeltTobbletMagyar").innerHTML = "";
+        document.getElementById("emeltTobbletMagyar50").innerHTML = "";
+    }
+    if (tortenelemEmelt == "nincs" || tortenelemKell.checked == false || tortenelemErettsegi < 45) {
+        document.getElementById("emeltTobbletTortenelem").innerHTML = "";
+        document.getElementById("emeltTobbletTortenelem50").innerHTML = "";
+    }
+    if (matematikaEmelt == "nincs" || matematikaKell.checked == false || matematikaErettsegi < 45) {
+        document.getElementById("emeltTobbletMatematika").innerHTML = "";
+        document.getElementById("emeltTobbletMatematika50").innerHTML = "";
+    }
+    if (valasztottNyelvEmelt == "nincs" || valasztottNyelvKell.checked == false || valasztottNyelvErettsegi < 45) {
+        document.getElementById("emeltTobbletValasztottNyelv").innerHTML = "";
+        document.getElementById("emeltTobbletValasztottNyelv50").innerHTML = "";
+    }
+    if (valasztottTargyEmelt == "nincs" || valasztottTargyKell.checked == false || valasztottTargyNyelvErettsegi < 45) {
+        document.getElementById("emeltTobbletValasztottTargy").innerHTML = "";
+        document.getElementById("emeltTobbletValasztottTargy50").innerHTML = "";
+    }
+    if (nyelvvizsga == "nincs") {
+        document.getElementById("nyelvvizsgaPont").innerHTML = "";
+    }
 
     //Összesítő táblázat kitöltése
     var tanulmanyiPontok = jegyekOsszesPontszam + Math.round(erettsegiAtlag);
     if (tanulmanyiPontok < erettsegiPontok) {
         document.getElementById("tanulmanyiPontokOsszesitesPontszam").innerHTML = erettsegiPontok + " pont";
         document.getElementById("duplazasSzoveg").innerHTML = "Tanulmányi pontok duplázással!"
+        document.getElementById("duplazasSzoveg").style.fontStyle = "italic";
+        document.getElementById("duplazasSzoveg").style.fontSize = "13px";
+        document.getElementById("duplazasSzoveg").style.color = "darkred";
     } else {
         document.getElementById("tanulmanyiPontokOsszesitesPontszam").innerHTML = tanulmanyiPontok + " pont";
     }
     document.getElementById("erettsegiPontokOsszesitesPontszam").innerHTML = erettsegiPontok + " pont";
 
     document.getElementById("osszesPont").innerHTML = tanulmanyiPontok + erettsegiPontok + tobbletPontokVegso + " pont";
-
-    /*window.onbeforeunload = function() {
-        return "Dude, are you sure you want to leave? Think of the kittens!";
-    }*/
 }
 
